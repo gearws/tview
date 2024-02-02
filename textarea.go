@@ -922,14 +922,14 @@ func (t *TextArea) SetClipboard(copyToClipboard func(string), pasteFromClipboard
 	t.copyToClipboard = copyToClipboard
 	if t.copyToClipboard == nil {
 		t.copyToClipboard = func(text string) {
-			t.clipboard = text
+			clipboard.Write(clipboard.FmtText, []byte(text))
 		}
 	}
 
 	t.pasteFromClipboard = pasteFromClipboard
 	if t.pasteFromClipboard == nil {
 		t.pasteFromClipboard = func() string {
-			return t.clipboard
+			return string(clipboard.Read(clipboard.FmtText))
 		}
 	}
 
