@@ -1,12 +1,12 @@
 package tview
 
 import (
+	"github.com/gdamore/tcell/v2"
+	"github.com/rivo/uniseg"
+	"golang.design/x/clipboard"
 	"strings"
 	"unicode"
 	"unicode/utf8"
-
-	"github.com/gdamore/tcell/v2"
-	"github.com/rivo/uniseg"
 )
 
 const (
@@ -2413,4 +2413,11 @@ func (t *TextArea) MouseHandler() func(action MouseAction, event *tcell.EventMou
 
 		return
 	})
+}
+
+func init() {
+	err := clipboard.Init()
+	if err != nil {
+		panic(err)
+	}
 }
