@@ -2065,7 +2065,7 @@ func (t *TextArea) InputHandler() func(event *tcell.EventKey, setFocus func(p Pr
 					t.rowOffset = 0
 				}
 			}
-		case tcell.KeyHome, tcell.KeyCtrlA: // Move to the start of the line.
+		case tcell.KeyHome: // Move to the start of the line.
 			t.moveCursor(t.cursor.row, 0)
 			if event.Modifiers()&tcell.ModShift == 0 {
 				t.selectionStart = t.cursor
@@ -2240,7 +2240,7 @@ func (t *TextArea) InputHandler() func(event *tcell.EventKey, setFocus func(p Pr
 		case tcell.KeyCtrlU: // Delete the current line.
 			t.deleteLine()
 			t.selectionStart = t.cursor
-		case tcell.KeyCtrlL: // Select everything.
+		case tcell.KeyCtrlL, tcell.KeyCtrlA: // Select everything.
 			t.selectionStart.row, t.selectionStart.column, t.selectionStart.actualColumn = 0, 0, 0
 			t.selectionStart.pos = [3]int{t.spans[0].next, 0, -1}
 			row := t.cursor.row
