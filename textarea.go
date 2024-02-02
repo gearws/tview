@@ -2240,7 +2240,7 @@ func (t *TextArea) InputHandler() func(event *tcell.EventKey, setFocus func(p Pr
 		case tcell.KeyCtrlU: // Delete the current line.
 			t.deleteLine()
 			t.selectionStart = t.cursor
-		case tcell.KeyCtrlL, tcell.KeyCtrlA: // Select everything.
+		case tcell.KeyCtrlA: // Select everything.
 			t.selectionStart.row, t.selectionStart.column, t.selectionStart.actualColumn = 0, 0, 0
 			t.selectionStart.pos = [3]int{t.spans[0].next, 0, -1}
 			row := t.cursor.row
